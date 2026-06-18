@@ -1,0 +1,94 @@
+# =====================================================================
+#  Decap CMS config — the admin panel at /admin reads this.
+#
+#  BACKEND: GitHub (recommended now — Netlify Identity is deprecated).
+#  >>> CHANGE `repo` below to your GitHub repo: "username/repo-name" <<<
+#  Login uses GitHub. Each editor needs access to that repo.
+#  (See HOW-TO-ADD.md for the one-time GitHub OAuth step on Netlify.)
+# =====================================================================
+backend:
+  name: github
+  repo: YOUR-USERNAME/YOUR-REPO   # <-- EDIT THIS (e.g. ashwin/mind-over-matter)
+  branch: main
+
+# Where uploaded images are stored / referenced from
+media_folder: "public/images"
+public_folder: "/images"
+
+# Editors see a live preview path
+site_url: "/"
+
+collections:
+  # -------------------- BLOG / JOURNAL --------------------
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{category}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "highlight", label: "Highlight word (shown in cyan on the home deck)", widget: "string", required: false }
+      - { name: "category", label: "Category (e.g. Episode 06)", widget: "string", hint: "The number here is shown as the big ghost number on the card." }
+      - { name: "excerpt", label: "Excerpt (short summary on the card)", widget: "text" }
+      - { name: "image", label: "Cover Image", widget: "image" }
+      - { name: "date", label: "Date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { name: "readTime", label: "Read time (e.g. 5 min)", widget: "string", required: false, default: "5 min" }
+      - { name: "relatedEpisode", label: "Related episode slug (optional)", widget: "string", required: false, hint: "e.g. the-silence-to-stardom — links to that episode page." }
+      - { name: "body", label: "Body", widget: "markdown", hint: "Tip: use the + image button in the toolbar to insert images anywhere in the text." }
+      - name: "gallery"
+        label: "Extra Images (optional gallery)"
+        widget: "list"
+        required: false
+        summary: "{{fields.caption}}"
+        fields:
+          - { name: "image", label: "Image", widget: "image" }
+          - { name: "caption", label: "Caption (optional)", widget: "string", required: false }
+
+  # -------------------- EPISODES --------------------
+  - name: "episodes"
+    label: "Episodes"
+    label_singular: "Episode"
+    folder: "content/episodes"
+    create: true
+    slug: "{{slug}}"
+    summary: "EP {{number}} — {{title}}"
+    sortable_fields: ["number", "date"]
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "number", label: "Episode number", widget: "number", value_type: "int", min: 1 }
+      - { name: "guest", label: "Guest", widget: "string" }
+      - { name: "role", label: "Guest role (e.g. Actor · Producer)", widget: "string" }
+      - { name: "image", label: "Cover Image", widget: "image" }
+      - { name: "youtube", label: "YouTube URL", widget: "string" }
+      - { name: "date", label: "Date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { name: "duration", label: "Duration (e.g. 1h 12m)", widget: "string" }
+      - { name: "live", label: "Show 'Now Streaming' badge?", widget: "boolean", default: false }
+      - { name: "tagline", label: "Tagline (one line)", widget: "string" }
+      - { name: "body", label: "Body", widget: "markdown", hint: "Tip: use the + image button in the toolbar to insert images anywhere in the text." }
+
+  # -------------------- HOME SECTIONS (single files) --------------------
+  - name: "sections"
+    label: "Home Sections"
+    files:
+      - name: "instagram"
+        label: "Instagram Feed"
+        file: "content/instagram.json"
+        fields:
+          - { name: "eyebrow", label: "Eyebrow", widget: "string" }
+          - { name: "titleMain", label: "Title (main)", widget: "string" }
+          - { name: "titleAccent", label: "Title (cyan accent)", widget: "string" }
+          - { name: "handleText", label: "Handle text (e.g. @yourname)", widget: "string" }
+          - { name: "handleUrl", label: "Handle link URL", widget: "string" }
+          - name: "items"
+            label: "Posts / Reels"
+            widget: "list"
+            summary: "{{fields.alt}} ({{fields.badge}})"
+            fields:
+              - { name: "href", label: "Instagram link", widget: "string" }
+              - { name: "img", label: "Thumbnail image", widget: "image" }
+              - { name: "alt", label: "Caption / alt text", widget: "string" }
+              - { name: "type", label: "Type", widget: "select", options: ["video", "image"], default: "video" }
+              - { name: "badge", label: "Badge (Reel / Post)", widget: "string", default: "Reel" }
