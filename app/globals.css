@@ -433,7 +433,7 @@ h1.mom-reveal-word{
 .mom-ro{ position:relative; }
 /* the glyph O never renders — it only reserves the slot; the artwork IS the O */
 /* .mom-reveal-word .mom-ro .ch{ opacity:0 !important; } */
-.mom-ro .mic{ position:absolute; left:50%; top:52%; width:1.22em;
+/* .mom-ro .mic{ position:absolute; left:50%; top:52%; width:1.22em;
   transform:translate(-50%,-50%) scale(.72); opacity:0; z-index:2; pointer-events:none;
   filter:saturate(1.15) brightness(1.07) drop-shadow(0 0 16px rgba(214,180,117,.5)) drop-shadow(0 10px 24px rgba(0,0,0,.6)); }
 .mom-ro .ring{ position:absolute; left:50%; top:50%; width:1em; height:1em;
@@ -441,8 +441,8 @@ h1.mom-reveal-word{
   opacity:0; transform:scale(.4); pointer-events:none; }
 .mom-rl.mom-ro.on .mic{
   animation:momMicPop .9s cubic-bezier(.22,1.35,.32,1) forwards,
-            momMicFloat 3.6s ease-in-out .9s infinite; }
-.mom-reveal-word.mic-out .mom-ro .ring{ animation:momRing 1s ease-out .05s forwards; }
+            momMicFloat 3.6s ease-in-out .9s infinite; } */
+/* .mom-reveal-word.mic-out .mom-ro .ring{ animation:momRing 1s ease-out .05s forwards; }
 .mom-reveal-word.mic-out .mom-ro .ch{ animation:momOKick .7s cubic-bezier(.34,1.56,.64,1); }
 @keyframes momMicPop{
   0%{ opacity:0; transform:translate(-50%,-50%) scale(.72) }
@@ -450,7 +450,7 @@ h1.mom-reveal-word{
   100%{ opacity:1; transform:translate(-50%,-50%) scale(1) } }
 @keyframes momMicFloat{ 0%,100%{ margin-top:0 } 50%{ margin-top:-.07em } }
 @keyframes momRing{ 0%{ opacity:.9; transform:scale(.4) } 100%{ opacity:0; transform:scale(2.6) } }
-@keyframes momOKick{ 0%{ transform:scale(1) } 35%{ transform:scale(.86) } 100%{ transform:scale(1) } }
+@keyframes momOKick{ 0%{ transform:scale(1) } 35%{ transform:scale(.86) } 100%{ transform:scale(1) } } */
 h1.mom-reveal-word{ transition:opacity .6s ease; }
 h1.mom-reveal-word.fade-out{ opacity:0; }
 /* ---- EPK cover text in the hero (from MOM EPK V2.0, page 1) ---- */
