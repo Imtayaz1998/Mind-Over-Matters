@@ -7,7 +7,7 @@
 import { useEffect } from "react";
 
 const WORDS = ["MIND", "OVER", "MATTER"];
-const MIC_SRC = "/images/o-mic.png";
+// const MIC_SRC = "/images/o-mic.png";
 
 export default function HeroLogoReveal() {
   useEffect(() => {
@@ -22,10 +22,16 @@ export default function HeroLogoReveal() {
       const w = document.createElement("span");
       w.className = "mom-rw";
       [...word].forEach((chr) => {
+        // const l = document.createElement("span");
+        // l.className = "mom-rl";
         const l = document.createElement("span");
-        l.className = "mom-rl";
-        const isMicO = word === "OVER" && chr === "O";
-        if (isMicO) l.classList.add("mom-ro");
+l.className = "mom-rl";
+
+l.innerHTML =
+  '<span class="dot" aria-hidden="true"></span>' +
+  '<span class="ch">' + chr + '</span>';
+        // const isMicO = word === "OVER" && chr === "O";
+        // if (isMicO) l.classList.add("mom-ro");
         l.innerHTML =
   '<span class="dot" aria-hidden="true"></span><span class="ch">' + chr + "</span>";
         // l.innerHTML =
@@ -88,7 +94,8 @@ export default function HeroLogoReveal() {
       timers.forEach(clearTimeout);
       timers = [];
       h1.classList.remove("phase-cluster", "fade-out");
-      h1.classList.add("phase-line", "mic-out");
+      // h1.classList.add("phase-line", "mic-out");
+      h1.classList.add("phase-line");
       letters.forEach((l) => {
         l.classList.add("on");
         l.style.removeProperty("--cx");
@@ -101,7 +108,8 @@ export default function HeroLogoReveal() {
     function reset() {
       timers.forEach(clearTimeout);
       timers = [];
-      h1.classList.remove("phase-cluster", "phase-line", "mic-out");
+      // h1.classList.remove("phase-cluster", "phase-line", "mic-out");
+      h1.classList.remove("phase-cluster", "phase-line");
       letters.forEach((l) => l.classList.remove("on"));
       setClusterOffsets();
       void h1.offsetWidth; // reflow so transitions restart cleanly
@@ -119,7 +127,8 @@ export default function HeroLogoReveal() {
         // watchdog: even if per-letter timers were throttled (background tab),
         // force every letter to its final sharp state before the mic pops
         letters.forEach((l) => l.classList.add("on"));
-        h1.classList.add("phase-line", "mic-out");
+        // h1.classList.add("phase-line", "mic-out");
+        h1.classList.add("phase-line");
       });
       // hold the finished logo, fade, then run the whole reveal again
       at(done + HOLD, () => h1.classList.add("fade-out"));
