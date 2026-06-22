@@ -27,10 +27,12 @@ export default function HeroLogoReveal() {
         const isMicO = word === "OVER" && chr === "O";
         if (isMicO) l.classList.add("mom-ro");
         l.innerHTML =
-          '<span class="dot" aria-hidden="true"></span><span class="ch">' + chr + "</span>" +
-          // (isMicO
-          //   ? '<span class="ring" aria-hidden="true"></span><img class="mic" src="' + MIC_SRC + '" alt="" aria-hidden="true">'
-          //   : "");
+  '<span class="dot" aria-hidden="true"></span><span class="ch">' + chr + "</span>";
+        // l.innerHTML =
+        //   '<span class="dot" aria-hidden="true"></span><span class="ch">' + chr + "</span>" +
+        //   (isMicO
+        //     ? '<span class="ring" aria-hidden="true"></span><img class="mic" src="' + MIC_SRC + '" alt="" aria-hidden="true">'
+        //     : "");
         w.appendChild(l);
       });
       h1.appendChild(w);
